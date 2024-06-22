@@ -1,4 +1,4 @@
-name: demo 
+name: deploy 
 on: push
 jobs:
   lint:
@@ -6,12 +6,8 @@ jobs:
     steps: 
       - name: Get code
         uses: actions/checkout@v3
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Lint
         run: npm run lint
   test:
@@ -20,12 +16,8 @@ jobs:
     steps: 
       - name: Get code
         uses: actions/checkout@v3
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Test code
         run: npm run test
   deploy:
@@ -34,13 +26,10 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Build code
         run: npm run build
       - name: Deploy code
         run: echo "Deploying..."
+       
